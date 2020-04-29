@@ -1,6 +1,7 @@
 <?php
 
-class Parser {
+class Parser
+{
 
     private $url;
     private $path;
@@ -25,8 +26,7 @@ class Parser {
 
         $this->downloadedImages($images);
     }
-
-
+    
     /**
      * This method downloaded all images.
      *
@@ -54,15 +54,14 @@ class Parser {
                     continue;
                 }
 
-                $path_img = $path . '/' .  dirname($img['path']);
+                $path_img = $path . '/' . dirname($img['path']);
                 if (!is_dir($path_img)) {
                     mkdir($path_img, 0777, true);
                 }
 
                 if (empty($img['host']) && !empty($img['path'])) {
                     copy($url['scheme'] . '://' . $url['host'] . $img['path'], $path . $img['path']);
-                }
-                elseif ($img['host'] == $url['host']) {
+                } elseif ($img['host'] == $url['host']) {
                     copy($image[1], $path . $img['path']);
                 }
             }
